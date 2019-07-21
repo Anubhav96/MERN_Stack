@@ -1,11 +1,16 @@
 const expres = require('express');
 const router = expres.Router();
-
+const usersController = require('../../controllers/users');
+const usersValidation = require('../../validation/users');
 /* 
-@route      GET api/users
-@desc       Test Route
+@route      POST api/users
+@desc       Register user
 @access     Public
 */
-router.get('/', (req, res) => res.send('User Route'));
+router.post(
+    '/',
+    usersValidation.validate('registerUser'),
+    usersController.registerUser
+);
 
 module.exports = router;

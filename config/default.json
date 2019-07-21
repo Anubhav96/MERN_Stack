@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://anubhavgoel:lavi1996@devconnector-nl7lp.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "",
+    "jwtSecret": ""
 }
