@@ -2,7 +2,7 @@ const expres = require('express');
 const router = expres.Router();
 const auth = require('../../middleware/auth');
 const profileController = require('../../controllers/profile');
-const profileValidation = require('../../validation/profie');
+const profileValidation = require('../../validation/profile');
 
 /* 
 @route      GET api/profile/me
