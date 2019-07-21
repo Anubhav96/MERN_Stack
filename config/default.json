@@ -1,4 +1,7 @@
 {
-    "mongoURI": "",
-    "jwtSecret": ""
+    "mongoURIAtlas": "mongodb+srv://username:password@devconnector-nl7lp.mongodb.net/test?retryWrites=true&w=majority",
+    "mongoURI": "mongodb://localhost:27017/MERN_Stack",
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "",
+    "githubSecret": ""
 }

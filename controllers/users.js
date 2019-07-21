@@ -15,13 +15,9 @@ exports.registerUser = async (req, res, next) => {
         let user = await User.findOne({ email });
 
         if (user) {
-            return res.status(400).json({
-                errors: [
-                    {
-                        msg: 'User already Exists'
-                    }
-                ]
-            });
+            return res
+                .status(400)
+                .json({ errors: [{ msg: 'User already Exists' }] });
         }
         const avatar = gravatar.url(email, {
             s: '200',
