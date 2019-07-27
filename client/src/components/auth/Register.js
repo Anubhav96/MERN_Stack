@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../store/actions/index';
@@ -24,12 +24,14 @@ const Register = props => {
         e.preventDefault();
         if (password !== password2) {
             props.setAlert('Passwords do not match', 'danger');
-            console.log();
         } else {
-            console.log(formData);
+            props.register({ name, email, password });
         }
     };
 
+    if (props.isAuthenticated) {
+        return <Redirect to='/dashboard' />;
+    }
     return (
         <Fragment>
             <section className='container'>
@@ -49,7 +51,7 @@ const Register = props => {
                             name='name'
                             value={name}
                             onChange={e => onChange(e)}
-                            required
+                            // required
                         />
                     </div>
                     <div className='form-group'>
@@ -59,7 +61,7 @@ const Register = props => {
                             name='email'
                             value={email}
                             onChange={e => onChange(e)}
-                            required
+                            // required
                         />
                         <small className='form-text'>
                             This site uses Gravatar so if you want a profile
@@ -71,7 +73,7 @@ const Register = props => {
                             type='password'
                             placeholder='Password'
                             name='password'
-                            minLength='6'
+                            // minLength='6'
                             value={password}
                             onChange={e => onChange(e)}
                         />
@@ -81,7 +83,7 @@ const Register = props => {
                             type='password'
                             placeholder='Confirm Password'
                             name='password2'
-                            minLength='6'
+                            // minLength='6'
                             value={password2}
                             onChange={e => onChange(e)}
                         />
@@ -103,13 +105,23 @@ const Register = props => {
 const mapDispatchToProps = dispatch => {
     return {
         setAlert: (msg, alertType, timeout) =>
-            dispatch(actions.setAlert(msg, alertType, timeout))
+            dispatch(actions.setAlert(msg, alertType, timeout)),
+        register: userDetails => dispatch(actions.register(userDetails))
     };
 };
+
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    };
+};
+
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 };
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Register);

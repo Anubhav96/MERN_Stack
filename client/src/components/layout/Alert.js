@@ -18,7 +18,7 @@ const Alert = ({ alerts }) => {
         })
     );
 };
-Alert.PropTypes = {
+Alert.propTypes = {
     alerts: PropTypes.array.isRequired
 };
 
