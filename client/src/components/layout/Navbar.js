@@ -1,12 +1,15 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 const Navbar = props => {
     const authLinks = (
         <ul>
+            <li>
+                <Link to='/profiles'>Developers</Link>
+            </li>
             <li>
                 <Link to='/dashboard'>
                     <i className='fas fa-user' />
@@ -14,10 +17,10 @@ const Navbar = props => {
                 </Link>
             </li>
             <li>
-                <a onClick={props.logout} href='#!'>
+                <Link onClick={props.logout} to='/'>
                     <i className='fas fa-sign-out-alt' />{' '}
                     <span className='hide-sm'>Logout</span>
-                </a>
+                </Link>
             </li>
         </ul>
     );
@@ -25,7 +28,7 @@ const Navbar = props => {
     const guestLinks = (
         <ul>
             <li>
-                <Link to='#!'>Developers</Link>
+                <Link to='/profiles'>Developers</Link>
             </li>
             <li>
                 <Link to='/register'>Register</Link>

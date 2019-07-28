@@ -7,5 +7,8 @@ export {
     addEducation,
     deleteExperience,
     deleteEducation,
-    deleteAccount
+    deleteAccount,
+    getAllProfiles,
+    getProfileById,
+    getGithubRepos
 } from './profile';
