@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const Profile = require('../models/Profile');
+const Post = require('../models/Post');
 const User = require('../models/User');
 const request = require('request');
 const config = require('config');
@@ -135,6 +136,7 @@ exports.getProfileByUserId = async (req, res, next) => {
 
 exports.deleteProfileAndUser = async (req, res, next) => {
     try {
+        await Post.deleteMany({ user: req.user.id }); //Remove user post
         await Profile.findOneAndRemove({ user: req.user.id }); //Remove Profile
         await User.findOneAndRemove({ _id: req.user.id }); //Remove User
         return res.json({ msg: 'User Deleted' });

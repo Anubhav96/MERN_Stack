@@ -38,7 +38,7 @@ router.get('/', profileController.getAllProfiles);
 router.get('/user/:userId', profileController.getProfileByUserId);
 
 /* 
-@route      DELETE api/profile/user/:userId
+@route      DELETE api/profile
 @desc       delete profile, user & post
 @access     private
 */
